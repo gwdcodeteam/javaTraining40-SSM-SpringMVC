@@ -1,0 +1,13 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="javaTraining40-SSM整合-SpringMVC:war exploded">
+    <output-path>$PROJECT_DIR$/out/artifacts/javaTraining40_SSM_SpringMVC_war_exploded</output-path>
+    <root id="root">
+      <element id="javaee-facet-resources" facet="javaTraining40-SSM整合-SpringMVC/web/Web" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="javaTraining40-SSM整合-SpringMVC" />
+        </element>
+      </element>
+    </root>
+  </artifact>
+</component>

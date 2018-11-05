@@ -1,0 +1,26 @@
+@ModelAttribute
+		1,如果标记在方法上：在每个目标方法之前被SpringMvc调用
+				执行流程如下：a.执行该注解修饰的方法，先从数据库中取出对象,
+							把对象放入map中,key为类名的首字母小写
+						  b.SpringMvc从map中取出User对象并把表单的请求
+						  	参数赋给User对象的对应属性
+						  c.SpringMvc把上述对象传入目标方法的参数
+						  
+		  SpringMvc确定目标方法pojo类型入参的过程：
+		  		1).确定一个key：
+		  				a.  如果目标方法的pojo类型的参数没有使用
+		  					@ModelAttribute作为修饰，则key为POJO类名第一个字母的小写
+		  				b.  如果使用了@ModelAttribute注解来修饰，则key为@ModelAttribute注解
+		  					的value属性值。
+		  					
+		  		2).	查找implicitModel中key对应的对象，若存在，则为入参传入。
+		  				如果在@ModelAttribute标记的方法的Map中保存过，且key和1确定的key一致则获取到
+		  		
+		  		3). 查找implicitModel中key对应的对象，若不存在对应的对象.
+		  			检查当前的Handler是否使用@SessionAttribute注解修饰，如果使用了该注解且该注解的value属性值
+		  			包含了key,则从httpSession中获取key所对应的value值，
+		  			若存在直接传入到目标方法的入参中，若不存在抛异常
+		  			
+		  		4).若处理器没有标识@SessionAttribute或@SessionAttribute中的value值中不包含key，则会通过
+		  			反射创建pojo类型的参数，传入为目标方法的参数	
+		  		5)SpringMvc会把key，和pojo类型的对象保存到implicitModel中进而会保存到request中		
